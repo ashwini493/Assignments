@@ -29,6 +29,7 @@ public class MainViewModel extends AndroidViewModel {
     Context context;
     private ApiInterface apiInterface;
     private DataRepository repository;
+    public String title;
 
     public MainViewModel(Application context) {
         super(context);
@@ -67,6 +68,7 @@ public class MainViewModel extends AndroidViewModel {
             public void onResponse(@NonNull Call<DataResponse> call, @NonNull Response<DataResponse> response) {
 
                 if (response.body() != null) {
+                    title = response.body().getTitle();
                     dataList = response.body().getRows();
                     liveData.setValue(dataList);
                     insert();

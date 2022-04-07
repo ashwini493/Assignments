@@ -29,6 +29,8 @@ public class MainFragment extends Fragment {
         @Override
         public void onChanged(List<Data> dataList) {
             recyclerViewAdapter.updateDataList(dataList);
+            requireActivity().setTitle(mainViewModel.title);
+
         }
     };
 
@@ -42,7 +44,6 @@ public class MainFragment extends Fragment {
         mainViewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication()).create(MainViewModel.class);
         mainViewModel.getMutableLiveData().observe(requireActivity(), dataListUpdateObserver);
 
-
         recyclerViewAdapter = new RecyclerViewAdapter(requireActivity());
         fragmentMainBinding.recyclerviewData.setAdapter(recyclerViewAdapter);
 
@@ -50,8 +51,9 @@ public class MainFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                mainViewModel.getMutableLiveData().observe(requireActivity(), dataListUpdateObserver);
-                recyclerViewAdapter.notifyDataSetChanged();
+                //refreshing data
+                fragmentMainBinding.swipeLayout.setRefreshing(false);
+                mainViewModel.getMutableLiveData().observe(requireActivity(), dataListUpdateObserver);               // recyclerViewAdapter.notifyDataSetChanged();
             }
         });
 
