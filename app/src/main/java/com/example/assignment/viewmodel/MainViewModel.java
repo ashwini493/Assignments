@@ -53,9 +53,6 @@ public class MainViewModel extends AndroidViewModel {
             UtilsMethods.showText(context, context.getString(R.string.no_network_available));
     }
 
-    public LiveData<List<Data>> getData() {
-        return liveData;
-    }
 
     private void insert() {
         repository.insert(dataList);

@@ -25,14 +25,6 @@ public class DataRepository {
         new InsertDataAsyncTask(dao).execute(model);
     }
 
-    public void update(List<Data> list) {
-        new UpdateDataAsyncTask(dao).execute(list);
-    }
-
-    public LiveData<List<Data>> getAllData() {
-        return allData;
-    }
-
     public static class InsertDataAsyncTask extends AsyncTask<List<Data>, Void, Void> {
         private final Dao dao;
 
@@ -47,22 +39,5 @@ public class DataRepository {
             return null;
         }
     }
-
-    private static class UpdateDataAsyncTask extends AsyncTask<List<Data>, Void, Void> {
-        private final Dao dao;
-
-        private UpdateDataAsyncTask(Dao dao) {
-            this.dao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(List<Data>... models) {
-            // below line is use to update
-            // our modal in dao.
-            dao.update(models[0]);
-            return null;
-        }
-    }
-
 
 }
