@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Assignment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="no_response_found">No response found</string>
+    <string name="no_network_available">No network available</string>
+</resources>
