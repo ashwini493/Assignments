@@ -47,12 +47,19 @@ public class MainViewModel extends AndroidViewModel {
 
     public void init() {
 
-        if (UtilsMethods.isNetworkAvailable(context))
+        if (UtilsMethods.isNetworkAvailable(context)) {
             getAllData();
-        else
+        } else {
             UtilsMethods.showText(context, context.getString(R.string.no_network_available));
+        }
+
     }
 
+    public List<Data> getAllRoomData() {
+        dataList = repository.getAllData().getValue();
+        liveData.setValue(dataList);
+        return dataList;
+    }
 
     private void insert() {
         repository.insert(dataList);

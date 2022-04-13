@@ -15,10 +15,6 @@ public interface Dao {
     @Insert
     void insert(List<Data> model);
 
-    @Update
-    void update(List<Data> model);
-
-
-    @Query("SELECT * FROM data_table ORDER BY id ASC")
+    @Query("SELECT * FROM data_table")
     LiveData<List<Data>> getAllData();
 }

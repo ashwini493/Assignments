@@ -21,6 +21,11 @@ public class DataRepository {
         allData = dao.getAllData();
     }
 
+    public LiveData<List<Data>> getAllData() {
+
+        return allData;
+    }
+
     public void insert(List<Data> model) {
         new InsertDataAsyncTask(dao).execute(model);
     }
@@ -40,4 +45,18 @@ public class DataRepository {
         }
     }
 
+    public static class GetDataAsyncTask extends AsyncTask<Void, Void, List<Data>> {
+        Dao dao;
+
+        private GetDataAsyncTask(Dao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected List<Data> doInBackground(Void... model) {
+            // below line is use to insert our modal in dao.
+            return (List<Data>) dao.getAllData();
+
+        }
+    }
 }
